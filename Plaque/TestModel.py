@@ -3,6 +3,8 @@ from build123d import *
 from ocp_vscode import show, show_object, reset_show, set_port, set_defaults, get_defaults
 set_port(3939)
 #%%
+#%%
+
 def svgtosketch(svg_file):
     fp = import_svg(svg_file)
     fp=list(fp)
@@ -25,17 +27,17 @@ borderthickness=2
 Name = StringToPart("Joe Neate",font="Copperplate Gothic Bold", font_size=11,align=(Align.CENTER, Align.MIN),extrudeamount=text_extrude_amount)
 Date = StringToPart("November 2023",font="Copperplate Gothic Bold", font_size=6, align=(Align.CENTER, Align.MIN),extrudeamount=text_extrude_amount)
 #%%
-backplate = svgtosketch("/workspaces/Models/SVG/backplate.svg")
+backplate = svgtosketch("./SVG/backplate.svg")
 with BuildPart() as plaque:
     add(backplate)
     extrude(amount=backplate_thickess)
 # %%
-sk = svgtosketch("/workspaces/Models/SVG/logo.svg")
+sk = svgtosketch("./SVG/logo.svg")
 with BuildPart() as logo:
     add(sk)
     extrude(amount=text_extrude_amount)
 # %%
-bsk = svgtosketch("/workspaces/Models/SVG/border.svg")
+bsk = svgtosketch("./SVG/border.svg")
 with BuildPart() as border:
     add(bsk)
     extrude(amount=text_extrude_amount)
