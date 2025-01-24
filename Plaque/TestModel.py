@@ -62,7 +62,7 @@ with BuildPart() as assemble:
 reset_show()
 show_object(assemble)
 # %%
-assemble.part.export_step("plaque.step")
+export_step(assemble.part,"plaque.step")
 # %%
 
 # %%
