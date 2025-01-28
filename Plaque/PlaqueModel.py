@@ -24,20 +24,15 @@ backplate_thickess=3
 text_extrude_amount=2
 borderthickness=2
 # %%
-Name = StringToPart("Joe Neate",font="Copperplate Gothic Bold", font_size=11,align=(Align.CENTER, Align.MIN),extrudeamount=text_extrude_amount)
+Name = StringToPart("Joe Bloggs",font="Copperplate Gothic Bold", font_size=11,align=(Align.CENTER, Align.MIN),extrudeamount=text_extrude_amount)
 Date = StringToPart("November 2023",font="Copperplate Gothic Bold", font_size=6, align=(Align.CENTER, Align.MIN),extrudeamount=text_extrude_amount)
 #%%
-backplate = svgtosketch("./SVG/backplate.svg")
+backplate = svgtosketch("./Plaque/SVG/backplate.svg")
 with BuildPart() as plaque:
     add(backplate)
     extrude(amount=backplate_thickess)
 # %%
-sk = svgtosketch("./SVG/logo.svg")
-with BuildPart() as logo:
-    add(sk)
-    extrude(amount=text_extrude_amount)
-# %%
-bsk = svgtosketch("./SVG/border.svg")
+bsk = svgtosketch("./Plaque/SVG/border.svg")
 with BuildPart() as border:
     add(bsk)
     extrude(amount=text_extrude_amount)
@@ -46,15 +41,11 @@ with BuildPart() as border:
 #%%
 plaquebox=plaque.part.bounding_box()
 plaquewidth = plaquebox.size.X
-logobox=logo.part.bounding_box()
-logowidth = logobox.size.X
 centerX = plaquewidth/2
 with BuildPart() as assemble:
     add(plaque.part)
     with Locations((0,0,backplate_thickess)):
         add(border.part)
-    with Locations((centerX-(logowidth/2),24,backplate_thickess)):
-        add(logo.part)
     with Locations((centerX,15,backplate_thickess)):
         add(Name)
     with Locations((centerX,7,backplate_thickess)):
